@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+    <table_name table_id="broker_approve">
+        <create>
+            id string,
+            broker_id string,
+            name_rsa string,
+            name_md5 string,
+            gender string,
+            bank_no_rsa string,
+            bank_no_md5 string,
+            bank_name string,
+            idcard_img string,
+            idcard_neg_img string,
+            photo string,
+            update_time string,
+            approve_state string,
+            unapprove_reason string,
+            idcard_num_rsa string,
+            idcard_num_md5 string,
+            idcard_length int,
+            idcard_area string,
+            idcard_birthday string,
+            idcard_sex string,
+            org_full_name string,
+            business_license string,
+            org_code string,
+            legal_name_rsa string,
+            legal_name_md5 string,
+            legal_gender string,
+            legal_birth string,
+            legal_idcard_rsa string,
+            legal_idcard_md5 string,
+            agent_name_rsa string,
+            agent_name_md5 string,
+            agent_gender string,
+            agent_birth string,
+            agent_idcard_rsa string,
+            agent_idcard_md5 string,
+            company_bank_no_rsa string,
+            company_bank_no_md5 string,
+            company_logo string,
+            photos string,
+            legal_idcard_img string,
+            legal_idcard_neg_img string,
+            agent_idcard_img string,
+            agent_idcard_neg_img string,
+            agent_book string,
+            is_disabled string,
+            phone_rsa string,
+            phone_md5 string,
+            apply_time string,
+            approve_time string,
+            approve_userid string,
+            e_mail_rsa string,
+            e_mail_md5 string,
+            m_qq_rsa string,
+            m_qq_md5 string,
+            weiChat string,
+            other_reason string,
+            zhi_fu_bao_rsa string,
+            zhi_fu_bao_md5 string,
+            pay_type string,
+            user_type string,
+            ems string,
+            bank_province string,
+            id_type string,
+            attribution_project string,
+            is_cheatbroker string,
+            owner_flag string,
+            IDCard_start_time string,
+            IDCard_end_time string,
+            photo_type string,
+            is_employee_et string,
+            sn_city_id string,
+            sn_employee_code string,
+            guid string,
+            sync_time string,
+            approve_state_old string,
+            IDCard_start_time_old string,
+            IDCard_end_time_old string,
+            is_cheatbroker_old string,
+            is_employee_et_old string,
+            owner_flag_old string,
+            pay_type_old string,
+            photo_type_old string,
+            update_time_old string
+        </create>
+        <select>
+            (select
+            id,
+            broker_id,
+            name,
+            gender,
+            bank_no,
+            bank_name,
+            idcard_img,
+            idcard_neg_img,
+            photo,
+            update_time,
+            approve_state,
+            unapprove_reason,
+            idcard_num,
+            org_full_name,
+            business_license,
+            org_code,
+            legal_name,
+            legal_gender,
+            legal_birth,
+            legal_idcard,
+            agent_name,
+            agent_gender,
+            agent_birth,
+            agent_idcard,
+            company_bank_no,
+            company_logo,
+            photos,
+            legal_idcard_img,
+            legal_idcard_neg_img,
+            agent_idcard_img,
+            agent_idcard_neg_img,
+            agent_book,
+            is_disabled,
+            phone,
+            apply_time,
+            approve_time,
+            approve_userid,
+            e_mail,
+            m_qq,
+            weiChat,
+            other_reason,
+            zhi_fu_bao,
+            pay_type,
+            user_type,
+            ems,
+            bank_province,
+            id_type,
+            attribution_project,
+            is_cheatbroker,
+            owner_flag,
+            IDCard_start_time,
+            IDCard_end_time,
+            photo_type,
+            is_employee_et,
+            sn_city_id,
+            sn_employee_code,
+            guid,
+            sync_time,
+            approve_state_old,
+            IDCard_start_time_old,
+            IDCard_end_time_old,
+            is_cheatbroker_old,
+            is_employee_et_old,
+            owner_flag_old,
+            pay_type_old,
+            photo_type_old,
+            update_time_old
+            from broker_approve
+            <!--增量同步条件-->
+<!--            where update_time >= '${start_time}' and '${end_time}' > update_time-->
+            ) spark_sql_broker_approve
+        </select>
+        <dataframe_columns>
+            id,
+            broker_id,
+            rsa(nvl(name, '')) as name_rsa,
+            md5(name) as name_md5,
+            gender,
+            rsa(nvl(bank_no, '')) as bank_no_rsa,
+            md5(bank_no) as bank_no_md5,
+            bank_name,
+            idcard_img,
+            idcard_neg_img,
+            photo,
+            update_time,
+            approve_state,
+            unapprove_reason,
+            rsa(upper(substring(nvl(idcard_num, ''), 1, 18))) as idcard_num_rsa,
+            md5(upper(substring(idcard_num, 1, 18))) as idcard_num_md5,
+            length(idcard_num) as idcard_length,
+            substring(idcard_num,1,6) as idcard_area,
+            substring(idcard_num,7,8) as idcard_birthday,
+            substring(idcard_num,17,1) as idcard_sex,
+            org_full_name,
+            business_license,
+            org_code,
+            rsa(nvl(legal_name, '')) as legal_name_rsa,
+            md5(legal_name) as legal_name_md5,
+            legal_gender,
+            legal_birth,
+            rsa(upper(substring(nvl(legal_idcard, ''), 1, 18))) as legal_idcard_rsa,
+            md5(upper(substring(legal_idcard, 1, 18))) as legal_idcard_md5,
+            rsa(agent_name) as agent_name_rsa,
+            rsa(agent_name) as agent_name_md5,
+            agent_gender,
+            agent_birth,
+            rsa(upper(substring(nvl(agent_idcard, ''), 1, 18))) as agent_idcard_rsa,
+            md5(upper(substring(agent_idcard, 1, 18))) as agent_idcard_md5,
+            rsa(nvl(company_bank_no, '')) as company_bank_no_rsa,
+            md5(company_bank_no) as company_bank_no_md5,
+            company_logo,
+            photos,
+            legal_idcard_img,
+            legal_idcard_neg_img,
+            agent_idcard_img,
+            agent_idcard_neg_img,
+            agent_book,
+            is_disabled,
+            rsa(nvl(phone, '')) as phone_rsa,
+            md5(phone) as phone_md5,
+            apply_time,
+            approve_time,
+            approve_userid,
+            rsa(nvl(e_mail, '')) as e_mail_rsa,
+            md5(e_mail) as e_mail_md5,
+            rsa(nvl(m_qq, '')) as m_qq_rsa,
+            md5(m_qq) as m_qq_md5,
+            weichat,
+            other_reason,
+            rsa(nvl(zhi_fu_bao, '')) as zhi_fu_bao_rsa,
+            md5(zhi_fu_bao) as zhi_fu_bao_md5,
+            pay_type,
+            user_type,
+            ems,
+            bank_province,
+            id_type,
+            attribution_project,
+            is_cheatbroker,
+            owner_flag,
+            idcard_start_time,
+            idcard_end_time,
+            photo_type,
+            is_employee_et,
+            sn_city_id,
+            sn_employee_code,
+            guid,
+            sync_time,
+            approve_state_old,
+            IDCard_start_time_old,
+            IDCard_end_time_old,
+            is_cheatbroker_old,
+            is_employee_et_old,
+            owner_flag_old,
+            pay_type_old,
+            photo_type_old,
+            update_time_old
+        </dataframe_columns>
+
+<!--
+        <idld_sql>
+            insert overwrite table ${hivedatabase}.ods_hdb_mysql_broker_approve partition(mysql_dbname)
+            select t1.id
+            ,t1.broker_id
+            ,t1.name_rsa
+            ,t1.name_md5
+            ,t1.gender
+            ,t1.bank_no_rsa
+            ,t1.bank_no_md5
+            ,t1.bank_name
+            ,t1.idcard_img
+            ,t1.idcard_neg_img
+            ,t1.photo
+            ,t1.update_time
+            ,t1.approve_state
+            ,t1.unapprove_reason
+            ,t1.idcard_num_rsa
+            ,t1.idcard_num_md5
+            ,t1.idcard_length
+            ,t1.idcard_area
+            ,t1.idcard_birthday
+            ,t1.idcard_sex
+            ,t1.org_full_name
+            ,t1.business_license
+            ,t1.org_code
+            ,t1.legal_name_rsa
+            ,t1.legal_name_md5
+            ,t1.legal_gender
+            ,t1.legal_birth
+            ,t1.legal_idcard_rsa
+            ,t1.legal_idcard_md5
+            ,t1.agent_name_rsa
+            ,t1.agent_name_md5
+            ,t1.agent_gender
+            ,t1.agent_birth
+            ,t1.agent_idcard_rsa
+            ,t1.agent_idcard_md5
+            ,t1.company_bank_no_rsa
+            ,t1.company_bank_no_md5
+            ,t1.company_logo
+            ,t1.photos
+            ,t1.legal_idcard_img
+            ,t1.legal_idcard_neg_img
+            ,t1.agent_idcard_img
+            ,t1.agent_idcard_neg_img
+            ,t1.agent_book
+            ,t1.is_disabled
+            ,t1.phone_rsa
+            ,t1.phone_md5
+            ,t1.apply_time
+            ,t1.approve_time
+            ,t1.approve_userid
+            ,t1.e_mail_rsa
+            ,t1.e_mail_md5
+            ,t1.m_qq_rsa
+            ,t1.m_qq_md5
+            ,t1.weichat
+            ,t1.other_reason
+            ,t1.zhi_fu_bao_rsa
+            ,t1.zhi_fu_bao_md5
+            ,t1.pay_type
+            ,t1.user_type
+            ,t1.ems
+            ,t1.bank_province
+            ,t1.id_type
+            ,t1.attribution_project
+            ,t1.is_cheatbroker
+            ,t1.owner_flag
+            ,t1.idcard_start_time
+            ,t1.idcard_end_time
+            ,t1.photo_type
+            ,t1.is_employee_et
+            ,t1.sn_city_id
+            ,t1.sn_employee_code
+            ,t1.guid
+            ,t1.sync_time
+            ,t1.approve_state_old
+            ,t1.idcard_start_time_old
+            ,t1.idcard_end_time_old
+            ,t1.is_cheatbroker_old
+            ,t1.is_employee_et_old
+            ,t1.owner_flag_old
+            ,t1.pay_type_old
+            ,t1.photo_type_old
+            ,t1.update_time_old
+            ,t1.mysql_dbname
+            from (
+            select a.*, row_number() over(partition by a.guid order by a.tag desc) rn
+            from(
+            select t.*,1 as tag from ${hivedatabase}.ods_hdb_mysql_broker_approve t
+            union all
+            select t.*,2 as tag from ${hivedatabase}.idld_hdb_mysql_broker_approve t) a
+            ) t1
+            left join ${hivedatabase}.ods_hdb_mysql_broker_approve_backup t2 on t1.guid=t2.guid
+            where t1.rn = 1 and t2.guid is null
+        </idld_sql>
+        -->
+    </table_name>
+
+
+</sparksqlshell>

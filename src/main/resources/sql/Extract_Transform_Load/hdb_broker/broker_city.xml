@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+
+    <table_name table_id="broker_city">
+        <create>
+            id String,
+            province_id String,
+            city_code String,
+            city_name String,
+            sync_time String
+        </create>
+        <select>
+            (select id ,
+            province_id ,
+            city_code ,
+            city_name ,
+            sync_time from broker_city) spark_sql_broker_city
+        </select>
+    </table_name>
+</sparksqlshell>

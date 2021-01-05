@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+    <table_name table_id="v_member_transfer">
+        <create>
+            id bigint,
+            member_hft_id string,
+            member_name string,
+            member_phone string,
+            src_mgr_hft_id string,
+            src_mgr_name string,
+            src_mgr_phone string,
+            dst_mgr_hft_id string,
+            dst_mgr_name string,
+            dst_mgr_phone string,
+            create_time string,
+            update_time string
+        </create>
+        <select>
+            (select
+            id,
+            member_hft_id,
+            member_name,
+            member_phone,
+            src_mgr_hft_id,
+            src_mgr_name,
+            src_mgr_phone,
+            dst_mgr_hft_id,
+            dst_mgr_name,
+            dst_mgr_phone,
+            create_time,
+            update_time
+            from v_member_transfer) spark_sql_v_member_transfer
+        </select>
+    </table_name>
+</sparksqlshell>

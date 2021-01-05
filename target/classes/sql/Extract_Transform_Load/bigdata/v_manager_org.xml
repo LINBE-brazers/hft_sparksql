@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+    <table_name table_id="v_manager_org">
+        <create>
+            id bigint,
+            mgr_id bigint,
+            org_id bigint,
+            is_disabled int
+        </create>
+        <select>
+            (select
+            id,
+            mgr_id,
+            org_id,
+            is_disabled
+            from v_manager_org) spark_sql_v_manager_org
+        </select>
+    </table_name>
+</sparksqlshell>

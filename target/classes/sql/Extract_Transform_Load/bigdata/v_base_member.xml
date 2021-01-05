@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+
+    <table_name table_id="v_base_member">
+        <create>
+            id bigint,
+            hft_id string,
+            mgr_hft_id string,
+            name string,
+            phone string,
+            id_card_type string,
+            id_card_no string,
+            data_source int,
+            create_time string,
+            update_time string,
+            is_disabled int,
+            assign_status int,
+            logout_acc int,
+            label int
+        </create>
+        <select>
+            (select
+            id,
+            hft_id,
+            mgr_hft_id,
+            name,
+            phone,
+            id_card_type,
+            id_card_no,
+            data_source,
+            create_time,
+            update_time,
+            is_disabled,
+            assign_status,
+            logout_acc,
+            label
+            from v_base_member) spark_sql_v_base_member
+        </select>
+    </table_name>
+</sparksqlshell>

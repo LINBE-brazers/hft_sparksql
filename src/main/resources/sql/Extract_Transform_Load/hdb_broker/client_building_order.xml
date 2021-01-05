@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+    <table_name table_id="client_building_order">
+        <create>
+            r_build_id string,
+            id string,
+            cont_tran_guid string,
+            proj_guid string,
+            cst_name_rsa string,
+            cst_name_md5 string,
+            card_id string,
+            cst_mobile_rsa string,
+            cst_mobile_md5 string,
+            room_number string,
+            turnover_area string,
+            turnover_area_old string,
+            turnover_amount string,
+            subs_time string,
+            subs_time_old string,
+            lifecycle_id string,
+            create_time string,
+            create_time_old string,
+            is_tran_fund string,
+            intention_rate string,
+            property_type string,
+            propertyType string,
+            max_commission_deduction_ratio string,
+            MaxCommissionDeductionRatio string,
+            update_time string,
+            roomguid string,
+            broker_id string,
+            guid string,
+            lifecycle_rb_id string,
+            user_type string,
+            member_level string,
+            member_level_old string,
+            sync_time string,
+            building_rb_id bigint,
+            building_name string
+        </create>
+        <select>
+            (select
+            r_build_id,id,cont_tran_guid,proj_guid,
+            cst_name,card_id,cst_mobile,room_number,turnover_area,
+            turnover_amount,
+            turnover_amount_old,
+            subs_time,
+            subs_time_old,
+            lifecycle_id,create_time,
+            create_time_old,
+            is_tran_fund,intention_rate,property_type,
+            propertyType,
+            max_commission_deduction_ratio,
+            MaxCommissionDeductionRatio,
+            update_time,roomguid,
+            broker_id,guid,lifecycle_rb_id,user_type,member_level,
+            member_level_old,
+            sync_time,building_rb_id,building_name
+            from client_building_order) spark_sql_client_building_order
+        </select>
+        <rsa_columns>
+            cst_mobile,
+            cst_name
+        </rsa_columns>
+    </table_name>
+
+</sparksqlshell>

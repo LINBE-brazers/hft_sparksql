@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+
+    <table_name table_id="prod_room_info">
+        <create>
+            id bigint,
+            project_guid string,
+            project_name string,
+            room_guid string,
+            room_name string,
+            floor_area string,
+            floor_unit_price string,
+            decoration_standard string,
+            payment_method string,
+            turnover_amount string,
+            zygu_name string,
+            zygu_phone string,
+            money_name string,
+            money_amount string,
+            status string,
+            create_time string,
+            update_time string,
+            is_delete int,
+            house_area string,
+            house_unit_price string,
+            decoration_price string,
+            house_type string,
+            product_type string,
+            sort string,
+            cost_price string,
+            cost_building_unit_price string,
+            cost_house_price string,
+            is_special_price string
+        </create>
+        <select>
+            (
+            select
+            id,
+            project_guid,
+            project_name,
+            room_guid,
+            room_name,
+            floor_area,
+            floor_unit_price,
+            decoration_standard,
+            default_pay_method as payment_method,
+            turnover_amount,
+            '' as zygu_name,
+            '' as zygu_phone,
+            '' as money_name,
+            0 as money_amount,
+            status,
+            create_date as create_time,
+            last_update_date as update_time,
+            is_deleted,
+            house_area,
+            house_unit_price,
+            decoration_total_price as decoration_price,
+            house_type,
+            product_type,
+            '' as sort,
+            cost_price as cost_price,
+            cost_building_unit_price,
+            cost_house_unit_price as cost_house_price,
+            '' as is_special_price
+            from  prod_room_info) spark_sql_prod_room_info
+        </select>
+    </table_name>
+
+</sparksqlshell>
+
+

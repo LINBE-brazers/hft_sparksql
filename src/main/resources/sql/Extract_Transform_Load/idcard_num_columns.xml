@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--配置身份证信息-->
+<idcard_num_names>
+    agent_idcard,
+    legal_idcard,
+<!--    会员经理身份证号,-->
+    id_card,
+    idcard_num,
+    contract_identity_card,
+    identity_card_number,
+    partner_id_num,
+    idcard
+</idcard_num_names>

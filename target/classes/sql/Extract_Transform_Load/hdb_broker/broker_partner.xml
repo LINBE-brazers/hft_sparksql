@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+    <table_name table_id="broker_partner">
+        <create>
+            id string comment '主键id',
+            guid string comment '邀请人经纪人id',
+            partner_guid string comment '合伙人经纪id',
+            partner_name_rsa string comment '合伙人姓名',
+            partner_name_md5 string comment '合伙人姓名',
+            partner_id_num_rsa string comment '合伙人认证身份证号',
+            partner_id_num_md5 string comment '合伙人认证身份证号',
+            partner_phone_rsa string comment '合伙人联系电话',
+            partner_phone_md5 string comment '合伙人联系电话',
+            binding_time string comment '绑定时间',
+            create_time string comment '创建时间',
+            update_time string comment '更新时间'
+        </create>
+        <select>
+            (
+            select id
+            ,guid
+            ,partner_guid
+            ,partner_name
+            ,partner_id_num
+            ,partner_phone
+            ,binding_time
+            ,create_time
+            ,update_time
+            from broker_partner) spark_sql_broker_partner
+        </select>
+        <rsa_columns>
+            partner_name,
+            partner_id_num,
+            partner_phone
+        </rsa_columns>
+    </table_name>
+</sparksqlshell>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+
+    <table_name table_id="org_info">
+        <create>
+            idNumber bigint,
+            id	bigint,
+            parent_org_code	string,
+            channel_code	string,
+            code	string,
+            org_type	string,
+            org_sub_type	string,
+            name	string,
+            org_level_code	string,
+            org_owner_type	string,
+            alias	string,
+            rank	string,
+            custom_service_ID	string,
+            third_org_code	string,
+            data_source	string,
+            building_open_start_time	string,
+            building_open_end_time	string,
+            is_disabled	int,
+            is_deleted	bigint,
+            version_no	int,
+            create_userid	bigint,
+            create_username_rsa	string,
+            create_username_md5	string,
+            create_user_ip_rsa	string,
+            create_user_ip_md5	string,
+            create_user_mac_rsa	string,
+            create_user_mac_md5	string,
+            create_time	string,
+            create_time_db	string,
+            update_userid	bigint,
+            update_username	string,
+            update_user_ip	string,
+            update_user_mac	string,
+            update_time	string,
+            update_time_db	string,
+            server_ip_rsa	string,
+            server_ip_md5	string,
+            company_id	bigint,
+            client_versionno	string,
+            org_name_lan2	string,
+            external_company_name	string,
+            external_company_id	string
+        </create>
+        <select>
+            (select id as idNumber,
+            id,parent_org_code,channel_code,
+            org_code,org_type,org_sub_type,
+            org_name,org_level_code,
+            org_owner_type,merchant_alias,
+            merchant_rank,customer_channel_id,
+            third_org_code,data_source,building_open_start_time,
+            building_open_end_time,is_available,is_deleted,
+            version_no,create_userid,create_username,create_user_ip,
+            create_user_mac,create_time,create_time_db,
+            update_userid,update_username,update_user_ip,
+            update_user_mac,update_time,update_time_db,
+            server_ip,company_id,client_versionno,
+            org_name_lan2,external_company_name,
+            external_company_id from org_info) spark_sql_org_info
+        </select>
+        <rsa_columns>
+            create_user_ip,
+            create_user_mac,
+            create_username,
+            server_ip
+        </rsa_columns>
+    </table_name>
+
+</sparksqlshell>

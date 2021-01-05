@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<spark-sql>
+    create table if not exists ${idld_table_name} stored as parquet as
+    select tmp.r_build_id
+    ,tmp.id
+    ,tmp.broker_id
+    ,tmp.client_id
+    ,tmp.building_id
+    ,tmp.client_status
+    ,tmp.client_status_old
+    ,tmp.is_locked
+    ,tmp.locked_at
+    ,tmp.unlocked_at
+    ,tmp.is_visited
+    ,tmp.is_signed
+    ,tmp.protect_time
+    ,tmp.protect_time_old
+    ,tmp.creater
+    ,tmp.create_time
+    ,tmp.create_time_old
+    ,tmp.remark
+    ,tmp.city_id
+    ,tmp.is_remind
+    ,tmp.mingyuan_status
+    ,tmp.exhibition_room_id
+    ,tmp.client_building_id
+    ,tmp.visite_company
+    ,tmp.visite_company_id
+    ,tmp.visite_place
+    ,tmp.visite_place_id
+    ,tmp.client_name_rsa
+    ,tmp.client_name_md5
+    ,tmp.is_id_card
+    ,tmp.client_id_card
+    ,tmp.activate_sign
+    ,tmp.activate_sign_old
+    ,tmp.bespeak_time
+    ,tmp.source_id
+    ,tmp.recommend_source
+    ,tmp.platform
+    ,tmp.health_intention
+    ,tmp.employee_mark
+    ,tmp.is_black
+    ,tmp.org_id
+    ,tmp.org_name
+    ,tmp.user_type
+    ,tmp.parent_user_type
+    ,tmp.update_time
+    ,tmp.update_time_old
+    ,tmp.is_special
+    ,tmp.owner_flag
+    ,tmp.is_h5_delete
+    ,tmp.client_phone_rsa
+    ,tmp.client_phone_md5
+    ,tmp.is_tuoke
+    ,tmp.is_employee_et
+    ,tmp.is_employee_et_old
+    ,tmp.property_type
+    ,tmp.is_make_up
+    ,tmp.is_signing
+    ,tmp.member_level
+    ,tmp.member_level_old
+    ,tmp.member_level_reward
+    ,tmp.member_level_reward_old
+    ,tmp.my_project_guid
+    ,tmp.guid
+    ,tmp.client_rb_id
+    ,tmp.building_rb_id
+    ,tmp.org_rb_id
+    ,tmp.visite_place_rb_id
+    ,tmp.visite_company_rb_id
+    ,tmp.sync_time
+    ,tmp.recommend_ip
+    ,tmp.source_rb_id
+    ,tmp.province_name
+    ,tmp.building_name
+    ,tmp.company_id
+    ,tmp.mysql_dbname
+    from
+    (
+    select t.*
+    ,row_number() over(partition by t.r_build_id order by t.rownum desc) as rn
+    from
+    (select t1.*
+    ,1 as rownum
+    from hdb.ods_hdb_kudu_client_building_relation t1
+    left anti join (select r_build_id from temp_view_idld where isdelete = 1) idld on t1.r_build_id = idld.r_build_id
+    union all
+    select t2.r_build_id
+    ,t2.id
+    ,t2.broker_id
+    ,t2.client_id
+    ,t2.building_id
+    ,t2.client_status
+    ,t2.client_status_old
+    ,t2.is_locked
+    ,t2.locked_at
+    ,t2.unlocked_at
+    ,t2.is_visited
+    ,t2.is_signed
+    ,t2.protect_time
+    ,t2.protect_time_old
+    ,t2.creater
+    ,t2.create_time
+    ,t2.create_time_old
+    ,t2.remark
+    ,t2.city_id
+    ,t2.is_remind
+    ,t2.mingyuan_status
+    ,t2.exhibition_room_id
+    ,t2.client_building_id
+    ,t2.visite_company
+    ,t2.visite_company_id
+    ,t2.visite_place
+    ,t2.visite_place_id
+    ,t2.client_name_rsa
+    ,t2.client_name_md5
+    ,t2.is_id_card
+    ,t2.client_id_card
+    ,t2.activate_sign
+    ,t2.activate_sign_old
+    ,t2.bespeak_time
+    ,t2.source_id
+    ,t2.recommend_source
+    ,t2.platform
+    ,t2.health_intention
+    ,t2.employee_mark
+    ,t2.is_black
+    ,t2.org_id
+    ,t2.org_name
+    ,t2.user_type
+    ,t2.parent_user_type
+    ,t2.update_time
+    ,t2.update_time_old
+    ,t2.is_special
+    ,t2.owner_flag
+    ,t2.is_h5_delete
+    ,t2.client_phone_rsa
+    ,t2.client_phone_md5
+    ,t2.is_tuoke
+    ,t2.is_employee_et
+    ,t2.is_employee_et_old
+    ,t2.property_type
+    ,t2.is_make_up
+    ,t2.is_signing
+    ,t2.member_level
+    ,t2.member_level_old
+    ,t2.member_level_reward
+    ,t2.member_level_reward_old
+    ,t2.my_project_guid
+    ,t2.guid
+    ,t2.client_rb_id
+    ,t2.building_rb_id
+    ,t2.org_rb_id
+    ,t2.visite_place_rb_id
+    ,t2.visite_company_rb_id
+    ,t2.sync_time
+    ,t2.recommend_ip
+    ,t2.source_rb_id
+    ,t2.province_name
+    ,t2.building_name
+    ,t2.company_id
+    ,t2.mysql_dbname
+    ,2 as rownum
+    from temp_view_idld t2 where t2.isdelete = 0) t
+    ) tmp
+    where tmp.rn = 1
+</spark-sql>

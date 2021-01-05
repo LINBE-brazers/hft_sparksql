@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+
+    <table_name table_id="t_sysconfig_provinces_district">
+        <create>
+            id int comment "区域主键",
+            dname string comment "区域名称",
+            pid int comment "区域上级标识",
+            sname string comment "地名简称",
+            levels int comment "区域等级",
+            city_code string comment "百度编码",
+            yzcode string comment "邮政编码",
+            mername string comment "组合名称",
+            lng decimal(10,3) comment "经度",
+            lat decimal(10,4) comment "纬度",
+            pinyin string comment "拼音"
+        </create>
+        <select>
+            (select id
+            ,dname
+            ,pid
+            ,sname
+            ,levels
+            ,city_code
+            ,yzcode
+            ,mername
+            ,lng
+            ,lat
+            ,pinyin
+            from t_sysconfig_provinces_district) spark_sql_t_sysconfig_provinces_district
+        </select>
+        <rsa_columns>
+        </rsa_columns>
+    </table_name>
+
+</sparksqlshell>

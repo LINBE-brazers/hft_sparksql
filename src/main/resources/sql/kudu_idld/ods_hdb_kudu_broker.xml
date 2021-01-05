@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<spark-sql>
+    create table if not exists ${idld_table_name} stored as parquet as
+    select tmp.guid
+    ,tmp.r_copy_id
+    ,tmp.id
+    ,tmp.m_phone_rsa
+    ,tmp.m_phone_md5
+    ,tmp.m_weixin_rsa
+    ,tmp.m_weixin_md5
+    ,tmp.m_qq_rsa
+    ,tmp.m_qq_md5
+    ,tmp.account_type
+    ,tmp.superior_id
+    ,tmp.broker_type
+    ,tmp.city
+    ,tmp.is_disabled
+    ,tmp.ios_device
+    ,tmp.android_device
+    ,tmp.screen_name_rsa
+    ,tmp.screen_name_md5
+    ,tmp.password_rsa
+    ,tmp.password_md5
+    ,tmp.org_account
+    ,tmp.create_time
+    ,tmp.build_id
+    ,tmp.dormant_status
+    ,tmp.vocation
+    ,tmp.active_time
+    ,tmp.is_employee
+    ,tmp.login_time
+    ,tmp.source_from
+    ,tmp.recommender_id
+    ,tmp.province_id
+    ,tmp.is_frozen
+    ,tmp.frozen_start_time
+    ,tmp.frozen_end_time
+    ,tmp.register_from
+    ,tmp.is_illegal
+    ,tmp.is_cheatbroker
+    ,tmp.register_ip_rsa
+    ,tmp.register_ip_md5
+    ,tmp.mini_openid
+    ,tmp.org_id
+    ,tmp.org_name
+    ,tmp.plaintext_pwd_rsa
+    ,tmp.plaintext_pwd_md5
+    ,tmp.org_black_list_flag
+    ,tmp.disabled_by
+    ,tmp.union_id
+    ,tmp.pwd_update_time
+    ,tmp.gs_country
+    ,tmp.gs_province
+    ,tmp.gs_city
+    ,tmp.gs_area
+    ,tmp.gs_address_rsa
+    ,tmp.gs_address_md5
+    ,tmp.jpush_id
+    ,tmp.lbs_city_code
+    ,tmp.site_city_code
+    ,tmp.sync_time
+    ,tmp.update_time
+    ,tmp.user_group_type
+    ,tmp.mysql_dbname
+    from
+
+    (
+    select t.*
+    ,row_number() over(partition by t.guid order by t.rownum desc) as rn
+    from
+    (select t1.*
+    ,1 as rownum
+    from hdb.ods_hdb_kudu_broker t1
+    left anti join (select guid from temp_view_idld where isdelete = 1) idld on t1.guid = idld.guid
+
+    union all
+
+    select t2.guid
+    ,t2.r_copy_id
+    ,t2.id
+    ,t2.m_phone_rsa
+    ,t2.m_phone_md5
+    ,t2.m_weixin_rsa
+    ,t2.m_weixin_md5
+    ,t2.m_qq_rsa
+    ,t2.m_qq_md5
+    ,t2.account_type
+    ,t2.superior_id
+    ,t2.broker_type
+    ,t2.city
+    ,t2.is_disabled
+    ,t2.ios_device
+    ,t2.android_device
+    ,t2.screen_name_rsa
+    ,t2.screen_name_md5
+    ,t2.password_rsa
+    ,t2.password_md5
+    ,t2.org_account
+    ,t2.create_time
+    ,t2.build_id
+    ,t2.dormant_status
+    ,t2.vocation
+    ,t2.active_time
+    ,t2.is_employee
+    ,t2.login_time
+    ,t2.source_from
+    ,t2.recommender_id
+    ,t2.province_id
+    ,t2.is_frozen
+    ,t2.frozen_start_time
+    ,t2.frozen_end_time
+    ,t2.register_from
+    ,t2.is_illegal
+    ,t2.is_cheatbroker
+    ,t2.register_ip_rsa
+    ,t2.register_ip_md5
+    ,t2.mini_openid
+    ,t2.org_id
+    ,t2.org_name
+    ,t2.plaintext_pwd_rsa
+    ,t2.plaintext_pwd_md5
+    ,t2.org_black_list_flag
+    ,t2.disabled_by
+    ,t2.union_id
+    ,t2.pwd_update_time
+    ,t2.gs_country
+    ,t2.gs_province
+    ,t2.gs_city
+    ,t2.gs_area
+    ,t2.gs_address_rsa
+    ,t2.gs_address_md5
+    ,t2.jpush_id
+    ,t2.lbs_city_code
+    ,t2.site_city_code
+    ,t2.sync_time
+    ,t2.update_time
+    ,t2.user_group_type
+    ,t2.mysql_dbname
+    ,2 as rownum
+    from temp_view_idld t2 where t2.isdelete = 0) t
+    ) tmp
+    where tmp.rn = 1
+</spark-sql>

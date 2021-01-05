@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+    <table_name table_id="v_organization">
+        <create>
+            id bigint,
+            parent_id bigint,
+            name string,
+            path string,
+            level int
+        </create>
+        <select>
+            (select
+            id,
+            parent_id,
+            name,
+            path,
+            level
+            from v_organization) spark_sql_v_organization
+        </select>
+    </table_name>
+</sparksqlshell>

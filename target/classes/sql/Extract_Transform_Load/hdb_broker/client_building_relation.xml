@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+    <table_name table_id="client_building_relation">
+        <create>
+            r_build_id string,
+            id string,
+            broker_id string,
+            client_id string,
+            building_id string,
+            client_status int,
+            client_status_old string,
+            is_locked string,
+            locked_at string,
+            unlocked_at string,
+            is_visited string,
+            is_signed string,
+            protect_time string,
+            protect_time_old string,
+            creater string,
+            create_time string,
+            create_time_old string,
+            remark string,
+            city_id string,
+            is_remind string,
+            mingyuan_status string,
+            exhibition_room_id string,
+            client_building_id string,
+            visite_company string,
+            visite_company_id string,
+            visite_place string,
+            visite_place_id string,
+            client_name_rsa string,
+            client_name_md5 string,
+            is_id_card string,
+            client_id_card string,
+            activate_sign int,
+            activate_sign_old string,
+            bespeak_time string,
+            source_id string,
+            recommend_source string,
+            platform string,
+            health_intention string,
+            employee_mark string,
+            is_black string,
+            org_id string,
+            org_name string,
+            user_type string,
+            parent_user_type string,
+            update_time string,
+            update_time_old string,
+            is_special string,
+            owner_flag string,
+            is_h5_delete string,
+            client_phone_rsa string,
+            client_phone_md5 string,
+            is_tuoke string,
+            is_employee_et int,
+            is_employee_et_old string,
+            property_type string,
+            is_make_up string,
+            is_signing string,
+            member_level int,
+            member_level_old int,
+            member_level_reward int,
+            member_level_reward_old int,
+            my_project_guid string,
+            guid string,
+            client_rb_id bigint,
+            building_rb_id bigint,
+            org_rb_Id bigint,
+            visite_place_rb_id bigint,
+            visite_company_rb_id bigint,
+            sync_time string,
+            recommend_ip string,
+            source_rb_id bigint,
+            province_name string,
+            building_name string,
+            company_id bigint
+        </create>
+        <select>
+            (
+            select
+            r_build_id,
+            id,
+            broker_id,
+            client_id,
+            building_id,
+            client_status,
+            client_status_old,
+            is_locked,
+            locked_at,
+            unlocked_at,
+            is_visited,
+            is_signed,
+            protect_time,
+            protect_time_old,
+            creater,
+            create_time,
+            create_time_old,
+            remark,
+            city_id,
+            is_remind,
+            mingyuan_status,
+            exhibition_room_id,
+            client_building_id,
+            visite_company,
+            visite_company_id,
+            visite_place,
+            visite_place_id,
+            client_name,
+            is_id_card,
+            client_id_card,
+            activate_sign,
+            activate_sign_old,
+            bespeak_time,
+            source_id,
+            recommend_source,
+            platform,
+            health_intention,
+            employee_mark,
+            is_black,
+            org_id,
+            org_name,
+            user_type,
+            parent_user_type,
+            update_time,
+            update_time_old,
+            is_special,
+            owner_flag,
+            is_h5_delete,
+            client_phone,
+            is_tuoke,
+            is_employee_et,
+            is_employee_et_old,
+            property_type,
+            is_make_up,
+            is_signing,
+            member_level,
+            member_level_old,
+            member_level_reward,
+            member_level_reward_old,
+            my_project_guid,
+            guid,
+            client_rb_id,
+            building_rb_id,
+            org_rb_Id,
+            visite_place_rb_id,
+            visite_company_rb_id,
+            sync_time,
+            recommend_ip,
+            source_rb_id,
+            province_name,
+            building_name,
+            company_id
+            from  client_building_relation
+            <!--增量同步条件-->
+<!--            where update_time >= '${start_time}' and '${end_time}' > update_time-->
+            ) spark_sql_client_building_relation
+        </select>
+        <rsa_columns>
+            client_phone,
+            client_name
+        </rsa_columns>
+
+        <!--增量同步后合并sql
+        <idld_sql>
+            insert overwrite table ${hivedatabase}.ods_hdb_mysql_client_building_relation partition(mysql_dbname)
+            select tmp.r_build_id
+            ,tmp.id
+            ,tmp.broker_id
+            ,tmp.client_id
+            ,tmp.building_id
+            ,tmp.client_status
+            ,tmp.client_status_old
+            ,tmp.is_locked
+            ,tmp.locked_at
+            ,tmp.unlocked_at
+            ,tmp.is_visited
+            ,tmp.is_signed
+            ,tmp.protect_time
+            ,tmp.protect_time_old
+            ,tmp.creater
+            ,tmp.create_time
+            ,tmp.create_time_old
+            ,tmp.remark
+            ,tmp.city_id
+            ,tmp.is_remind
+            ,tmp.mingyuan_status
+            ,tmp.exhibition_room_id
+            ,tmp.client_building_id
+            ,tmp.visite_company
+            ,tmp.visite_company_id
+            ,tmp.visite_place
+            ,tmp.visite_place_id
+            ,tmp.client_name_rsa
+            ,tmp.client_name_md5
+            ,tmp.is_id_card
+            ,tmp.client_id_card
+            ,tmp.activate_sign
+            ,tmp.activate_sign_old
+            ,tmp.bespeak_time
+            ,tmp.source_id
+            ,tmp.recommend_source
+            ,tmp.platform
+            ,tmp.health_intention
+            ,tmp.employee_mark
+            ,tmp.is_black
+            ,tmp.org_id
+            ,tmp.org_name
+            ,tmp.user_type
+            ,tmp.parent_user_type
+            ,tmp.update_time
+            ,tmp.update_time_old
+            ,tmp.is_special
+            ,tmp.owner_flag
+            ,tmp.is_h5_delete
+            ,tmp.client_phone_rsa
+            ,tmp.client_phone_md5
+            ,tmp.is_tuoke
+            ,tmp.is_employee_et
+            ,tmp.is_employee_et_old
+            ,tmp.property_type
+            ,tmp.is_make_up
+            ,tmp.is_signing
+            ,tmp.member_level
+            ,tmp.member_level_old
+            ,tmp.member_level_reward
+            ,tmp.member_level_reward_old
+            ,tmp.my_project_guid
+            ,tmp.guid
+            ,tmp.client_rb_id
+            ,tmp.building_rb_id
+            ,tmp.org_rb_id
+            ,tmp.visite_place_rb_id
+            ,tmp.visite_company_rb_id
+            ,tmp.sync_time
+            ,tmp.recommend_ip
+            ,tmp.source_rb_id
+            ,tmp.province_name
+            ,tmp.building_name
+            ,tmp.company_id
+            ,tmp.mysql_dbname
+            from
+            (
+            select t.*
+            ,row_number() over(partition by t.r_build_id order by t.rownum desc) as rn
+            from
+            (select t1.*
+            ,1 as rownum
+            from ${hivedatabase}.ods_hdb_mysql_client_building_relation t1
+            union all
+            select t2.*
+            ,2 as rownum
+            from ${hivedatabase}.idld_hdb_mysql_client_building_relation t2) t
+            ) tmp
+            where tmp.rn = 1
+
+        </idld_sql>
+        -->
+    </table_name>
+</sparksqlshell>

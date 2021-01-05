@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+    <table_name table_id="prod_label2prod">
+        <create>
+            id bigint comment "主键",
+            label_id bigint comment "标签id",
+            prod_id bigint comment "产品id",
+            is_front_show int comment "是否前台显示",
+            is_important int comment "是否重要标签",
+            label_name string comment "标签名称",
+            label_type int comment "标签类型(1:搜索标签，2：展示标签，3：筛选标签)",
+            hft_id string comment "恒房通ID"
+        </create>
+        <select>
+            (
+            select id
+            ,label_id
+            ,prod_id
+            ,is_front_show
+            ,is_important
+            ,label_name
+            ,label_type
+            ,hft_id
+            from prod_label2prod) spark_sql_prod_label2prod
+        </select>
+    </table_name>
+</sparksqlshell>
+
+

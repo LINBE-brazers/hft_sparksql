@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+    <table_name table_id="broker_approve_backup">
+        <create>
+            id string,
+            broker_id string,
+            name_rsa string,
+            name_md5 string,
+            gender string,
+            bank_no_rsa string,
+            bank_no_md5 string,
+            bank_name string,
+            idcard_img string,
+            idcard_neg_img string,
+            photo string,
+            update_time string,
+            approve_state string,
+            unapprove_reason string,
+            idcard_num_rsa string,
+            idcard_num_md5 string,
+            org_full_name string,
+            business_license string,
+            org_code string,
+            legal_name_rsa string,
+            legal_name_md5 string,
+            legal_gender string,
+            legal_birth string,
+            legal_idcard_rsa string,
+            legal_idcard_md5 string,
+            agent_name_rsa string,
+            agent_name_md5 string,
+            agent_gender string,
+            agent_birth string,
+            agent_idcard_rsa string,
+            agent_idcard_md5 string,
+            company_bank_no_rsa string,
+            company_bank_no_md5 string,
+            company_logo string,
+            photos string,
+            legal_idcard_img string,
+            legal_idcard_neg_img string,
+            agent_idcard_img string,
+            agent_idcard_neg_img string,
+            agent_book string,
+            is_disabled string,
+            phone_rsa string,
+            phone_md5 string,
+            apply_time string,
+            approve_time string,
+            weiChat string,
+            other_reason string,
+            zhi_fu_bao_rsa string,
+            zhi_fu_bao_md5 string,
+            pay_type string,
+            user_type string,
+            ems string,
+            bank_province string,
+            id_type string,
+            attribution_project string,
+            owner_flag string,
+            guid string,
+            sync_time string,
+            CHULI string
+        </create>
+        <select>
+            (
+            select
+            id,broker_id,name,gender,bank_no,bank_name,idcard_img,idcard_neg_img,photo,update_time,approve_state,unapprove_reason,
+            idcard_num,org_full_name,business_license,org_code,legal_name,legal_gender,legal_birth,legal_idcard,agent_name,agent_gender,agent_birth,agent_idcard,company_bank_no,company_logo,photos,legal_idcard_img,
+            legal_idcard_neg_img,agent_idcard_img,agent_idcard_neg_img,agent_book,is_disabled,phone,apply_time,approve_time,weiChat,other_reason,zhi_fu_bao,pay_type,user_type,ems,bank_province,id_type,attribution_project,owner_flag,
+            guid,sync_time,CHULI from broker_approve_backup) spark_sql_broker_approve_backup
+        </select>
+        <rsa_columns>
+            bank_no,
+            idcard_num,
+            name,
+            phone,
+            zhi_fu_bao,
+            legal_name,
+            legal_idcard,
+            agent_name,
+            agent_idcard,
+            company_bank_no
+        </rsa_columns>
+    </table_name>
+
+</sparksqlshell>

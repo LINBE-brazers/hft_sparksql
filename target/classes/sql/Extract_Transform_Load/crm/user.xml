@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+
+    <table_name table_id="user">
+        <create>
+            id    bigint,
+            union_id    String,
+            broker_id string,
+            user_id    bigint,
+            mobile    String,
+            member_type_id    bigint,
+            broker_level    bigint,
+            before_level_id    bigint,
+            card_id    String,
+            is_deleted    String,
+            grade_time    String ,
+            is_drop_level    int,
+            is_manual_change    int,
+            is_manager_member    int,
+            higher_broker_id    String,
+            binding_time    String,
+            approve_ownerflag    String,
+            create_userid    bigint,
+            create_username    String,
+            create_time    String,
+            create_time_db    String,
+            server_ip    String,
+            update_userid    bigint,
+            update_username    String,
+            update_time    String,
+            update_time_db    String,
+            company_id    bigint
+        </create>
+        <select>
+            (select
+            id    ,
+            union_id    ,
+            broker_id,
+            user_id    ,
+            mobile    ,
+            member_type_id    ,
+            member_level_id    ,
+            before_level_id    ,
+            card_id    ,
+            is_deleted    ,
+            grade_time     ,
+            is_drop_level    ,
+            is_manual_change    ,
+            is_manager_member    ,
+            higher_broker_id    ,
+            binding_time    ,
+            approve_owerflag    ,
+            create_userid    ,
+            create_username    ,
+            create_time    ,
+            create_time_db    ,
+            server_ip    ,
+            update_userid    ,
+            update_username    ,
+            update_time    ,
+            update_time_db    ,
+            company_id
+            from user) spark_sql_user
+        </select>
+    </table_name>
+
+</sparksqlshell>

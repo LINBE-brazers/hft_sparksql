@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+    <table_name table_id="prod_attr2product">
+        <create>
+            id bigint,
+            attr_inner_name String,
+            attr_type String,
+            prod_id bigint,
+            obj_type String,
+            str_value String,
+            obj_des String,
+            is_deleted int,
+            pos int,
+            authority_tenant_id	bigint,
+            authority_company_id	bigint,
+            authority_corp_id	bigint,
+            authority_project_id	bigint
+        </create>
+        <select>
+            (
+            select
+            id,
+            attr_inner_name,
+            attr_type,
+            prod_id,
+            obj_type,
+            str_value,
+            obj_des,
+            is_deleted,
+            pos,
+            authority_tenant_id,
+            authority_company_id,
+            authority_corp_id,
+            authority_project_id
+            from prod_attr2product) spark_sql_prod_attr2product
+        </select>
+    </table_name>
+</sparksqlshell>
+
+

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+    <table_name table_id="blacklist">
+        <create>
+            phone_rsa string,
+            phone_md5 string,
+            name_rsa string,
+            name_md5 string,
+            remark string,
+            create_time string,
+            create_user_id string,
+            create_user_name string,
+            idcard_num_rsa string,
+            idcard_num_md5 string,
+            company_name string,
+            company_id string,
+            quarters string,
+            project string,
+            del_flag string,
+            del_time string,
+            sync_time string
+        </create>
+        <select>
+            (
+            select
+            phone,
+            name,
+            remark,
+            create_time,
+            create_user_id,
+            create_user_name,
+            idcard_num,
+            company_name,
+            company_id,
+            quarters,
+            project,
+            del_flag,
+            del_time,
+            sync_time
+            from blacklist) spark_sql_blacklist
+        </select>
+        <rsa_columns>
+            phone,
+            name,
+            idcard_num
+        </rsa_columns>
+    </table_name>
+</sparksqlshell>

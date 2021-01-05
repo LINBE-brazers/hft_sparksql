@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<spark-sql>
+    create table if not exists ${idld_table_name} stored as parquet as
+    select tmp.id
+    ,tmp.broker_id
+    ,tmp.name_rsa
+    ,tmp.name_md5
+    ,tmp.gender
+    ,tmp.bank_no_rsa
+    ,tmp.bank_no_md5
+    ,tmp.bank_name
+    ,tmp.idcard_img
+    ,tmp.idcard_neg_img
+    ,tmp.photo
+    ,tmp.update_time
+    ,tmp.approve_state
+    ,tmp.unapprove_reason
+    ,tmp.idcard_num_rsa
+    ,tmp.idcard_num_md5
+    ,tmp.idcard_length
+    ,tmp.idcard_area
+    ,tmp.idcard_birthday
+    ,tmp.idcard_sex
+    ,tmp.org_full_name
+    ,tmp.business_license
+    ,tmp.org_code
+    ,tmp.legal_name_rsa
+    ,tmp.legal_name_md5
+    ,tmp.legal_gender
+    ,tmp.legal_birth
+    ,tmp.legal_idcard_rsa
+    ,tmp.legal_idcard_md5
+    ,tmp.agent_name_rsa
+    ,tmp.agent_name_md5
+    ,tmp.agent_gender
+    ,tmp.agent_birth
+    ,tmp.agent_idcard_rsa
+    ,tmp.agent_idcard_md5
+    ,tmp.company_bank_no_rsa
+    ,tmp.company_bank_no_md5
+    ,tmp.company_logo
+    ,tmp.photos
+    ,tmp.legal_idcard_img
+    ,tmp.legal_idcard_neg_img
+    ,tmp.agent_idcard_img
+    ,tmp.agent_idcard_neg_img
+    ,tmp.agent_book
+    ,tmp.is_disabled
+    ,tmp.phone_rsa
+    ,tmp.phone_md5
+    ,tmp.apply_time
+    ,tmp.approve_time
+    ,tmp.approve_userid
+    ,tmp.e_mail_rsa
+    ,tmp.e_mail_md5
+    ,tmp.m_qq_rsa
+    ,tmp.m_qq_md5
+    ,tmp.weichat
+    ,tmp.other_reason
+    ,tmp.zhi_fu_bao_rsa
+    ,tmp.zhi_fu_bao_md5
+    ,tmp.pay_type
+    ,tmp.user_type
+    ,tmp.ems
+    ,tmp.bank_province
+    ,tmp.id_type
+    ,tmp.attribution_project
+    ,tmp.is_cheatbroker
+    ,tmp.owner_flag
+    ,tmp.idcard_start_time
+    ,tmp.idcard_end_time
+    ,tmp.photo_type
+    ,tmp.is_employee_et
+    ,tmp.sn_city_id
+    ,tmp.sn_employee_code
+    ,tmp.guid
+    ,tmp.sync_time
+    ,tmp.approve_state_old
+    ,tmp.idcard_start_time_old
+    ,tmp.idcard_end_time_old
+    ,tmp.is_cheatbroker_old
+    ,tmp.is_employee_et_old
+    ,tmp.owner_flag_old
+    ,tmp.pay_type_old
+    ,tmp.photo_type_old
+    ,tmp.update_time_old
+    ,tmp.mysql_dbname
+    from
+
+    (
+    select t.*
+    ,row_number() over(partition by t.guid order by t.rownum desc) as rn
+    from
+    (select t1.*
+    ,1 as rownum
+    from hdb.ods_hdb_kudu_broker_approve t1
+    left anti join (select guid from temp_view_idld where isdelete = 1) idld on t1.guid = idld.guid
+
+    union all
+
+    select t2.id
+    ,t2.broker_id
+    ,t2.name_rsa
+    ,t2.name_md5
+    ,t2.gender
+    ,t2.bank_no_rsa
+    ,t2.bank_no_md5
+    ,t2.bank_name
+    ,t2.idcard_img
+    ,t2.idcard_neg_img
+    ,t2.photo
+    ,t2.update_time
+    ,t2.approve_state
+    ,t2.unapprove_reason
+    ,t2.idcard_num_rsa
+    ,t2.idcard_num_md5
+    ,t2.idcard_length
+    ,t2.idcard_area
+    ,t2.idcard_birthday
+    ,t2.idcard_sex
+    ,t2.org_full_name
+    ,t2.business_license
+    ,t2.org_code
+    ,t2.legal_name_rsa
+    ,t2.legal_name_md5
+    ,t2.legal_gender
+    ,t2.legal_birth
+    ,t2.legal_idcard_rsa
+    ,t2.legal_idcard_md5
+    ,t2.agent_name_rsa
+    ,t2.agent_name_md5
+    ,t2.agent_gender
+    ,t2.agent_birth
+    ,t2.agent_idcard_rsa
+    ,t2.agent_idcard_md5
+    ,t2.company_bank_no_rsa
+    ,t2.company_bank_no_md5
+    ,t2.company_logo
+    ,t2.photos
+    ,t2.legal_idcard_img
+    ,t2.legal_idcard_neg_img
+    ,t2.agent_idcard_img
+    ,t2.agent_idcard_neg_img
+    ,t2.agent_book
+    ,t2.is_disabled
+    ,t2.phone_rsa
+    ,t2.phone_md5
+    ,t2.apply_time
+    ,t2.approve_time
+    ,t2.approve_userid
+    ,t2.e_mail_rsa
+    ,t2.e_mail_md5
+    ,t2.m_qq_rsa
+    ,t2.m_qq_md5
+    ,t2.weichat
+    ,t2.other_reason
+    ,t2.zhi_fu_bao_rsa
+    ,t2.zhi_fu_bao_md5
+    ,t2.pay_type
+    ,t2.user_type
+    ,t2.ems
+    ,t2.bank_province
+    ,t2.id_type
+    ,t2.attribution_project
+    ,t2.is_cheatbroker
+    ,t2.owner_flag
+    ,t2.idcard_start_time
+    ,t2.idcard_end_time
+    ,t2.photo_type
+    ,t2.is_employee_et
+    ,t2.sn_city_id
+    ,t2.sn_employee_code
+    ,t2.guid
+    ,t2.sync_time
+    ,t2.approve_state_old
+    ,t2.idcard_start_time_old
+    ,t2.idcard_end_time_old
+    ,t2.is_cheatbroker_old
+    ,t2.is_employee_et_old
+    ,t2.owner_flag_old
+    ,t2.pay_type_old
+    ,t2.photo_type_old
+    ,t2.update_time_old
+    ,t2.mysql_dbname
+    ,2 as rownum
+    from temp_view_idld t2 where t2.isdelete = 0) t
+    ) tmp
+    where tmp.rn = 1
+</spark-sql>

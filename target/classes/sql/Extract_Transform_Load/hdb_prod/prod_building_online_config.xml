@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+    <table_name table_id="prod_building_online_config">
+        <create>
+            id	bigint,
+            prod_id	bigint,
+            prod_url	string,
+            is_recommend	int,
+            is_recommend_reward	int,
+            is_yun_report	int,
+            is_required_by_person	int,
+            is_required_by_intermediary	int,
+            is_special_aisle	int,
+            is_joint_marketing	int,
+            is_new_opening	int,
+            is_signed_required	int,
+            is_unsigned_required	int,
+            new_open_sort	int,
+            deal_protect_days	int,
+            report_protect_days	int,
+            examined_status	int,
+            online_status	int,
+            is_buy_online	string,
+            is_group	string,
+            is_deleted	string,
+            create_date	string,
+            create_by	int,
+            last_update_by	string,
+            last_update_date	string,
+            version_number	bigint,
+            authority_tenant_id	bigint,
+            authority_company_id	bigint,
+            authority_corp_id	bigint,
+            authority_project_id	bigint
+        </create>
+        <select>
+            (
+            select id
+            ,prod_id
+            ,prod_url
+            ,is_recommend
+            ,is_recommend_reward
+            ,is_yun_report
+            ,is_required_by_person
+            ,is_required_by_intermediary
+            ,is_special_aisle
+            ,is_joint_marketing
+            ,is_new_opening
+            ,is_signed_required
+            ,is_unsigned_required
+            ,new_open_sort
+            ,deal_protect_days
+            ,report_protect_days
+            ,examined_status
+            ,online_status
+            ,is_buy_online
+            ,is_group
+            ,is_deleted
+            ,create_date
+            ,create_by
+            ,last_update_by
+            ,last_update_date
+            ,version_number
+            ,authority_tenant_id
+            ,authority_company_id
+            ,authority_corp_id
+            ,authority_project_id
+            from  prod_building_online_config
+            ) spark_sql_prod_building_online_config
+        </select>
+    </table_name>
+</sparksqlshell>
+
+

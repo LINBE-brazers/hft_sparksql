@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+
+    <table_name table_id="prod_hft_province">
+        <create>
+            id	string,
+            name	string,
+            sort	int,
+            is_disabled	int,
+            alias	string,
+            phone	string,
+            province_x	string,
+            province_y	string,
+            is_special	string,
+            code	string
+        </create>
+        <select>
+            (
+            select
+            id,
+            name,
+            sort,
+            is_disabled,
+            alias,
+            phone,
+            province_x,
+            province_y,
+            is_special,
+            code
+            from  prod_hft_province
+            ) spark_sql_prod_hft_province
+        </select>
+    </table_name>
+
+</sparksqlshell>
+
+

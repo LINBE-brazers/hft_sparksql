@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+    <table_name table_id="broker_collect">
+        <create>
+            id string comment "",
+            broker_id string comment "经纪人ID",
+            relation_id string comment "资源ID",
+            create_time string comment "创建时间",
+            is_like string comment "1: 取消收藏 0：收藏",
+            source_type string comment "资源类型【0：楼盘 1：客户】",
+            update_time string comment "修改时间",
+            r_build_id bigint comment "重构id",
+            guid bigint comment "重构broker_id",
+            relation_rb_id bigint comment "重构资源ID",
+            sync_time string comment "同步数据的时间"
+        </create>
+        <select>
+            (
+            select id
+            ,broker_id
+            ,relation_id
+            ,create_time
+            ,is_like
+            ,source_type
+            ,update_time
+            ,r_build_id
+            ,guid
+            ,relation_rb_id
+            ,sync_time
+            from broker_collect) spark_sql_broker_collect
+        </select>
+        <rsa_columns>
+        </rsa_columns>
+    </table_name>
+</sparksqlshell>

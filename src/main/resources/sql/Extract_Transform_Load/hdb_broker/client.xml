@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+    <table_name table_id="client">
+        <create>
+            id string,
+            name_rsa string,
+            name_md5 string,
+            phone_rsa string,
+            phone_md5 string,
+            city string,
+            id_card_rsa string,
+            id_card_md5 string,
+            r_build_id string
+        </create>
+        <select>
+            (select id,name,phone,city,id_card,r_build_id from client) spark_sql_client
+        </select>
+        <rsa_columns>
+            id_card,
+            phone,
+            name
+        </rsa_columns>
+    </table_name>
+
+</sparksqlshell>

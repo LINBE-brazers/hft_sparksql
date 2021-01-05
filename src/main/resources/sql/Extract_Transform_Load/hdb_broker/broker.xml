@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+    <table_name table_id="broker">
+        <create>
+            guid string,
+            r_copy_id string,
+            id String,
+            m_phone_rsa String,
+            m_phone_md5 String,
+            m_weixin_rsa String,
+            m_weixin_md5 String,
+            m_qq_rsa String,
+            m_qq_md5 String,
+            account_type String,
+            superior_id String,
+            broker_type String,
+            city String,
+            is_disabled int,
+            ios_device String,
+            android_device String,
+            screen_name_rsa String,
+            screen_name_md5 String,
+            password_rsa String,
+            password_md5 String,
+            org_account String,
+            create_time String,
+            build_id String,
+            dormant_status String,
+            vocation String,
+            active_time String,
+            is_employee String,
+            login_time String,
+            source_from String,
+            recommender_id String,
+            province_id String,
+            is_frozen string,
+            frozen_start_time String,
+            frozen_end_time String,
+            register_from String,
+            is_illegal String,
+            is_cheatbroker String,
+            register_ip_rsa String,
+            register_ip_md5 String,
+            mini_openId String,
+            org_id String,
+            org_name String,
+            plaintext_pwd_rsa String,
+            plaintext_pwd_md5 String,
+            org_black_list_flag String,
+            disabled_by String,
+            union_id String,
+            pwd_update_time String,
+            gs_country String,
+            gs_province String,
+            gs_city String,
+            gs_area String,
+            gs_address_rsa String,
+            gs_address_md5 String,
+            jpush_id String,
+            lbs_city_code String,
+            site_city_code String,
+            sync_time String,
+            update_time String,
+            user_group_type string
+        </create>
+        <select>
+            (select
+            guid,r_copy_id,id,m_phone,
+            m_weixin, m_qq,account_type,superior_id, broker_type,city,
+            is_disabled,ios_device,android_device, screen_name,password,
+            org_account, create_time,build_id,dormant_status, vocation,
+            active_time, is_employee, login_time, source_from, recommender_id ,
+            province_id, is_frozen, frozen_start_time,frozen_end_time,
+            register_from, is_illegal,is_cheatbroker,register_ip,
+            mini_openId,org_id,org_name,plaintext_pwd,org_black_list_flag,
+            disabled_by,union_id,pwd_update_time,gs_country,gs_province,
+            gs_city,gs_area,gs_address,jpush_id,lbs_city_code,
+            site_city_code,sync_time,update_time,user_group_type
+            from  broker
+            <!--增量同步条件-->
+<!--            where update_time >= '${start_time}' and '${end_time}' > update_time-->
+            ) spark_sql_broker
+        </select>
+        <rsa_columns>
+            m_qq,
+            password,
+            plaintext_pwd,
+            m_phone,
+            m_weixin,
+            gs_address,
+            register_ip,
+            register_ip,
+            screen_name
+        </rsa_columns>
+
+        <idld_sql>
+            insert overwrite table ${hivedatabase}.ods_hdb_mysql_broker partition(mysql_dbname)
+            select t1.guid
+            ,t1.r_copy_id
+            ,t1.id
+            ,t1.m_phone_rsa
+            ,t1.m_phone_md5
+            ,t1.m_weixin_rsa
+            ,t1.m_weixin_md5
+            ,t1.m_qq_rsa
+            ,t1.m_qq_md5
+            ,t1.account_type
+            ,t1.superior_id
+            ,t1.broker_type
+            ,t1.city
+            ,t1.is_disabled
+            ,t1.ios_device
+            ,t1.android_device
+            ,t1.screen_name_rsa
+            ,t1.screen_name_md5
+            ,t1.password_rsa
+            ,t1.password_md5
+            ,t1.org_account
+            ,t1.create_time
+            ,t1.build_id
+            ,t1.dormant_status
+            ,t1.vocation
+            ,t1.active_time
+            ,t1.is_employee
+            ,t1.login_time
+            ,t1.source_from
+            ,t1.recommender_id
+            ,t1.province_id
+            ,t1.is_frozen
+            ,t1.frozen_start_time
+            ,t1.frozen_end_time
+            ,t1.register_from
+            ,t1.is_illegal
+            ,t1.is_cheatbroker
+            ,t1.register_ip_rsa
+            ,t1.register_ip_md5
+            ,t1.mini_openid
+            ,t1.org_id
+            ,t1.org_name
+            ,t1.plaintext_pwd_rsa
+            ,t1.plaintext_pwd_md5
+            ,t1.org_black_list_flag
+            ,t1.disabled_by
+            ,t1.union_id
+            ,t1.pwd_update_time
+            ,t1.gs_country
+            ,t1.gs_province
+            ,t1.gs_city
+            ,t1.gs_area
+            ,t1.gs_address_rsa
+            ,t1.gs_address_md5
+            ,t1.jpush_id
+            ,t1.lbs_city_code
+            ,t1.site_city_code
+            ,t1.sync_time
+            ,t1.update_time
+            ,t1.user_group_type
+            ,t1.mysql_dbname
+            from (
+            select a.*, row_number() over(partition by a.guid order by a.tag desc) rn
+            from(
+            select t.*,1 as tag from ${hivedatabase}.ods_hdb_mysql_broker t
+            union all
+            select t.*,2 as tag from ${hivedatabase}.idld_hdb_mysql_broker t) a
+            ) t1
+            left join ${hivedatabase}.ods_hdb_mysql_broker_backup t2 on t1.guid=t2.guid
+            where t1.rn = 1 and t2.guid is null
+        </idld_sql>
+    </table_name>
+</sparksqlshell>

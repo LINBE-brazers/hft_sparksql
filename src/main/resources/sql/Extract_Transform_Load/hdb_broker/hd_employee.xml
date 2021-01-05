@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+    <table_name table_id="hd_employee">
+        <create>
+            id	string comment '主键',
+            idcard_rsa	string comment '身份证号',
+            idcard_md5	string comment '身份证号',
+            position	string comment '职位',
+            dept	string comment '部门',
+            create_time	string comment '创建时间',
+            update_time	string comment '更新时间',
+            is_confirm	string comment '',
+            status	string comment '状态',
+            employee_name_rsa	string comment '姓名',
+            employee_name_md5	string comment '姓名',
+            employee_unit	string comment '公司',
+            alias	string comment '',
+            out_duty_date	string comment '',
+            sync_time	string comment '同步时间',
+            refresh_time	string comment '更新时间',
+            mobile_rsa	string comment '手机号',
+            mobile_md5	string comment '手机号',
+            uid	string comment '账号，sap号'
+        </create>
+        <select>
+            (
+            select id
+            ,idcard
+            ,position
+            ,dept
+            ,create_time
+            ,update_time
+            ,is_confirm
+            ,status
+            ,employee_name
+            ,employee_unit
+            ,alias
+            ,out_duty_date
+            ,sync_time
+            ,refresh_time
+            ,mobile
+            ,uid
+            from hd_employee) spark_sql_hd_employee
+        </select>
+        <rsa_columns>
+            idcard,
+            employee_name,
+            mobile
+        </rsa_columns>
+
+    </table_name>
+</sparksqlshell>

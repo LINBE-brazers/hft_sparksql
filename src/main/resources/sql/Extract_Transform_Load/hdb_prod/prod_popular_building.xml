@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+    <table_name table_id="prod_popular_building">
+        <create>
+            id bigint comment "热门楼盘主键id",
+            prod_id bigint comment "商品id",
+            is_popular int comment "是否热门，1：是，0：否",
+            is_group_class int comment "是否集团类别，1：是，0：否",
+            is_deleted int comment "删除标记,1:删除，0：未删除",
+            create_date string comment "创建时间",
+            create_by string comment "创建人",
+            last_update_by string comment "最后更改人",
+            last_update_date string comment "最后更新时间",
+            version_number int comment "版本信息",
+            authority_tenant_id bigint comment "平台id",
+            authority_company_id bigint comment "公司id",
+            authority_corp_id bigint comment "集团id",
+            authority_project_id bigint comment "项目id"
+        </create>
+        <select>
+            (
+            select id
+            ,prod_id
+            ,is_popular
+            ,is_group_class
+            ,is_deleted
+            ,create_date
+            ,create_by
+            ,last_update_by
+            ,last_update_date
+            ,version_number
+            ,authority_tenant_id
+            ,authority_company_id
+            ,authority_corp_id
+            ,authority_project_id
+            from prod_popular_building) spark_sql_prod_popular_building
+        </select>
+    </table_name>
+</sparksqlshell>
+
+

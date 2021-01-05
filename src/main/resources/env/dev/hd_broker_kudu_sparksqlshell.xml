@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+    <table_name table_id="new_company_relation">
+        <create>
+            idNumber|int,
+            id|String,
+            new_id|String,
+            company_id|String
+        </create>
+        <keys>idNumber,id</keys>
+        <select>
+            (
+                select row_number() over(order by id) as idNumber,
+                id,
+                new_id,
+                company_id from new_company_relation
+            ) sparksql_new_company_relation
+        </select>
+    </table_name>
+
+    <table_name table_id="news">
+        <create>
+            idNumber|int,
+            id|String,
+            catagory_id|String,
+            title|String,
+            creater|String,
+            create_time|String,
+            is_hot|String,
+            is_publish|String,
+            address|String,
+            address_x|String,
+            address_y|String,
+            is_disable|String,
+            is_push|String,
+            city_id|String,
+            company_id|String,
+            is_group|String,
+            url|String,
+            update_time|String,
+            user_type|String,
+            is_notice|String,
+            is_share_notice|String,
+            building_channel_flag|String,
+            building_channel_id|String,
+            news_type|String,
+            news_kind|String,
+            check_status|String,
+            checker|String,
+            auto_generate_content|String,
+            submitter|String,
+            job_time|String,
+            sort|int
+        </create>
+        <keys>idNumber,id</keys>
+        <select>
+            (
+               select row_number() over(order by id) as idNumber,
+                id ,
+                catagory_id,
+                title,
+                creater,
+                create_time,
+                is_hot,
+                is_publish,
+                address,
+                address_x,
+                address_y,
+                is_disable,
+                is_push,
+                city_id,
+                company_id,
+                is_group,
+                url,
+                update_time,
+                user_type,
+                is_notice,
+                is_share_notice,
+                building_channel_flag,
+                building_channel_id,
+                news_type,
+                news_kind,
+                check_status,
+                checker,
+                auto_generate_content,
+                submitter,
+                job_time,
+                sort from news
+            ) sparksql_news
+        </select>
+    </table_name>
+
+    <table_name table_id="news_building_relation">
+        <create>
+            idNumber|int,
+            id|String,
+            news_id|String,
+            building_id|String
+        </create>
+        <keys>idNumber,id</keys>
+        <select>
+            (
+              select row_number() over(order by id) as idNumber,
+              id,
+              news_id,
+              building_id from news_building_relation
+            ) sparksql_news_building_relation
+        </select>
+    </table_name>
+
+    <table_name table_id="news_catagory">
+        <create>
+            idNumber|int,
+            id|String,
+            name|String
+        </create>
+        <keys>idNumber,id</keys>
+        <select>
+            (
+               select row_number() over(order by id) as idNumber,
+               id,
+               name from news_catagory
+            ) sparksql_news_catagory
+        </select>
+    </table_name>
+
+    <table_name table_id="news_item">
+        <create>
+            idNumber|int,
+            id|String,
+            news_id|String,
+            content|String,
+            attach_type|String,
+            order_Index|int
+        </create>
+        <keys>idNumber,id</keys>
+        <select>
+            (
+                select row_number() over(order by id) as idNumber,
+                id,
+                news_id,
+                content,
+                attach_type,
+                order_Index from news_item
+            ) sparksql_news_item
+        </select>
+    </table_name>
+
+    <table_name table_id="news_read">
+        <create>
+            idNumber|int,
+            id|String,
+            news_id|String,
+            create_time|String
+        </create>
+        <keys>idNumber,id</keys>
+        <select>
+            (
+                 select row_number() over(order by id) as idNumber,
+                 id,
+                 news_id,
+                 create_time from news_read
+            ) sparksql_news_read
+        </select>
+    </table_name>
+
+
+</sparksqlshell>

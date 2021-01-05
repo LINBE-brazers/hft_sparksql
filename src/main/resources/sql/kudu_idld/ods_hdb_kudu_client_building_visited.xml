@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<spark-sql>
+    create table if not exists ${idld_table_name} stored as parquet as
+    select tmp.r_build_id
+    ,tmp.id
+    ,tmp.client_id
+    ,tmp.building_id
+    ,tmp.status
+    ,tmp.status_old
+    ,tmp.signseehouse
+    ,tmp.visited_time
+    ,tmp.visited_time_old
+    ,tmp.reception
+    ,tmp.creater
+    ,tmp.remark
+    ,tmp.lifecycle_id
+    ,tmp.recheck_user
+    ,tmp.recheck_mark
+    ,tmp.visit_review_status
+    ,tmp.purpose
+    ,tmp.purpose_old
+    ,tmp.withseehouse
+    ,tmp.my_visited_guid
+    ,tmp.my_project_guid
+    ,tmp.my_mobile_rsa
+    ,tmp.my_mobile_md5
+    ,tmp.is_exchange
+    ,tmp.is_local_visit
+    ,tmp.create_time
+    ,tmp.create_time_old
+    ,tmp.update_time
+    ,tmp.is_lead
+    ,tmp.saler_name_rsa
+    ,tmp.saler_name_md5
+    ,tmp.equipment_id
+    ,tmp.broker_id
+    ,tmp.client_rb_id
+    ,tmp.lifecycle_rb_id
+    ,tmp.guid
+    ,tmp.building_rb_id
+    ,tmp.sync_time
+    ,tmp.building_name
+    ,tmp.mysql_dbname
+    from
+
+    (
+    select t.*
+    ,row_number() over(partition by t.id order by t.rownum desc) as rn
+    from
+    (select t1.*
+    ,1 as rownum
+    from hdb.ods_hdb_kudu_client_building_visited t1
+    left anti join (select id from temp_view_idld where isdelete = 1) idld on t1.id = idld.id
+
+    union all
+
+    select t2.r_build_id
+    ,t2.id
+    ,t2.client_id
+    ,t2.building_id
+    ,t2.status
+    ,t2.status_old
+    ,t2.signseehouse
+    ,t2.visited_time
+    ,t2.visited_time_old
+    ,t2.reception
+    ,t2.creater
+    ,t2.remark
+    ,t2.lifecycle_id
+    ,t2.recheck_user
+    ,t2.recheck_mark
+    ,t2.visit_review_status
+    ,t2.purpose
+    ,t2.purpose_old
+    ,t2.withseehouse
+    ,t2.my_visited_guid
+    ,t2.my_project_guid
+    ,t2.my_mobile_rsa
+    ,t2.my_mobile_md5
+    ,t2.is_exchange
+    ,t2.is_local_visit
+    ,t2.create_time
+    ,t2.create_time_old
+    ,t2.update_time
+    ,t2.is_lead
+    ,t2.saler_name_rsa
+    ,t2.saler_name_md5
+    ,t2.equipment_id
+    ,t2.broker_id
+    ,t2.client_rb_id
+    ,t2.lifecycle_rb_id
+    ,t2.guid
+    ,t2.building_rb_id
+    ,t2.sync_time
+    ,t2.building_name
+    ,t2.mysql_dbname
+    ,2 as rownum
+    from temp_view_idld t2 where t2.isdelete = 0) t
+    ) tmp
+    where tmp.rn = 1
+</spark-sql>

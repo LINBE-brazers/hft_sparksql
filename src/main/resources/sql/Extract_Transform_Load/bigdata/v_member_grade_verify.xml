@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+    <table_name table_id="v_member_grade_verify">
+        <create>
+            id bigint,
+            m_id string,
+            m_grade int,
+            state int,
+            broker_type string,
+            update_time timestamp,
+            insert_time timestamp,
+            approve_time timestamp,
+            approve_by string,
+            user_type string,
+            work_org_name string,
+            working_place string,
+            working_place_name string,
+            work_year int,
+            recommender_name string,
+            recommender_id string,
+            card_pic string,
+            other_pic string,
+            m_desc string,
+            approve_desc string,
+            approve_by_id int,
+            m_name string,
+            work_pic string,
+            memo string,
+            gmt_created string,
+            purchase_item string,
+            phone string,
+            source_type int,
+            label int
+        </create>
+        <select>
+            (select
+            id,
+            m_id,
+            m_grade,
+            state,
+            broker_type,
+            update_time,
+            insert_time,
+            approve_time,
+            approve_by,
+            user_type,
+            work_org_name,
+            working_place,
+            working_place_name,
+            work_year,
+            recommender_name,
+            recommender_id,
+            card_pic,
+            other_pic,
+            m_desc,
+            approve_desc,
+            approve_by_id,
+            m_name,
+            work_pic,
+            memo,
+            gmt_created,
+            purchase_item,
+            phone,
+            source_type,
+            label
+            from v_member_grade_verify) spark_sql_v_member_grade_verify
+        </select>
+    </table_name>
+
+</sparksqlshell>

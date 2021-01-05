@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+    <table_name table_id="locate_info">
+        <create>
+            id string,
+            broker_id string,
+            device_info string,
+            device_type int,
+            longitude string,
+            latitude string,
+            country string,
+            province string,
+            city string,
+            address string,
+            create_time string,
+            guid string,
+            sync_time string
+        </create>
+        <select>
+            (
+            select
+            id,
+            broker_id,
+            device_info,
+            device_type,
+            longitude,
+            latitude,
+            country,
+            province,
+            city,
+            address,
+            create_time,
+            guid,
+            sync_time
+            from locate_info) spark_sql_locate_info
+        </select>
+    </table_name>
+</sparksqlshell>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+    <table_name table_id="prod_attrdictionary">
+        <create>
+            id bigint comment "主键",
+            attr_type_id bigint comment "属性类型",
+            line_count int comment "行数",
+            field_size int comment "文本框最大长度",
+            attr_inner_name string comment "内部名",
+            attr_outer_name string comment "显示名",
+            default_value string comment "默认值",
+            extra_param string comment "扩展参数",
+            units string comment "单位",
+            description string comment "描述",
+            can_null int comment "是否允许为空",
+            is_front_show int comment "是否前台显示",
+            pos int comment "排序",
+            is_deleted int comment "删除标记,1:删除，0：未删除"
+        </create>
+        <select>
+            (
+            select id
+            ,attr_type_id
+            ,line_count
+            ,field_size
+            ,attr_inner_name
+            ,attr_outer_name
+            ,default_value
+            ,extra_param
+            ,units
+            ,description
+            ,can_null
+            ,is_front_show
+            ,pos
+            ,is_deleted
+            from prod_attrdictionary) spark_sql_prod_attrdictionary
+        </select>
+    </table_name>
+</sparksqlshell>
+
+

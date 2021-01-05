@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+    <table_name table_id="so_attachment">
+        <create>
+            id	bigint,
+            order_code	String,
+            parent_order_code	String,
+            type	int,
+            name	String,
+            path	String,
+            img_path	String,
+            sign_id	String,
+            chk_code	String,
+            is_available	int,
+            is_deleted	int,
+            version_no	int,
+            create_userid	bigint,
+            create_username	String,
+            create_userip	String,
+            create_usermac	String,
+            create_time	String,
+            create_time_db	String,
+            server_ip	String,
+            update_userid	bigint,
+            update_username	String,
+            update_userip	String,
+            update_usermac	String,
+            update_time	String,
+            update_time_db	String,
+            client_versionno	String,
+            company_id	bigint
+        </create>
+        <select>
+            (
+            select
+            id,
+            order_code,
+            parent_order_code,
+            type,
+            name ,
+            path,
+            img_path ,
+            sign_id	,
+            chk_code ,
+            is_available,
+            is_deleted,
+            version_no,
+            create_userid,
+            create_username	,
+            create_userip,
+            create_usermac ,
+            create_time	,
+            create_time_db ,
+            server_ip,
+            update_userid,
+            update_username,
+            update_userip,
+            update_usermac,
+            update_time,
+            update_time_db,
+            client_versionno,
+            company_id from so_attachment
+            ) spark_sql_so_attachment
+        </select>
+    </table_name>
+</sparksqlshell>

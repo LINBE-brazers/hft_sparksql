@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+    <table_name table_id="v_base_manager">
+        <create>
+            id bigint,
+            hft_id string,
+            name string,
+            id_card_type string,
+            id_card_no string,
+            phone string,
+            entry_time timestamp,
+            create_time timestamp,
+            update_time timestamp,
+            is_disabled int,
+            is_cleaned int
+        </create>
+        <select>
+            (select
+            id,
+            hft_id,
+            name,
+            id_card_type,
+            id_card_no,
+            phone,
+            entry_time,
+            create_time,
+            update_time,
+            is_disabled,
+            is_cleaned
+            from v_base_manager) spark_sql_v_base_manager
+        </select>
+    </table_name>
+</sparksqlshell>

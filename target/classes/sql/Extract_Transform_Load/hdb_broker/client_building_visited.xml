@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+    <table_name table_id="client_building_visited">
+        <create>
+            r_build_id string,
+            id string,
+            client_id string,
+            building_id string,
+            status int,
+            status_old string,
+            signSeeHouse string,
+            visited_time string,
+            visited_time_old string,
+            reception string,
+            creater string,
+            remark string,
+            lifecycle_id string,
+            recheck_user string,
+            recheck_mark string,
+            visit_review_status int,
+            purpose int,
+            purpose_old string,
+            withSeeHouse string,
+            my_visited_guid string,
+            my_project_guid string,
+            my_mobile_rsa string,
+            my_mobile_md5 string,
+            is_exchange string,
+            is_local_visit string,
+            create_time string,
+            create_time_old string,
+            update_time string,
+            is_lead int,
+            saler_name_rsa string,
+            saler_name_md5 string,
+            equipment_id string,
+            broker_id string,
+            client_rb_id bigint,
+            lifecycle_rb_id string,
+            guid string,
+            building_rb_id bigint,
+            sync_time string,
+            building_name string
+        </create>
+        <select>
+            (select
+            r_build_id,
+            id,
+            client_id,
+            building_id,
+            status,
+            status_old,
+            signSeeHouse,
+            visited_time,
+            visited_time_old,
+            reception,
+            creater,
+            remark,
+            lifecycle_id,
+            recheck_user,
+            recheck_mark,
+            visit_review_status,
+            purpose,
+            purpose_old,
+            withSeeHouse,
+            my_visited_guid,
+            my_project_guid,
+            my_mobile,
+            is_exchange,
+            is_local_visit,
+            create_time,
+            create_time_old,
+            update_time,
+            is_lead,
+            saler_name,
+            equipment_id,
+            broker_id,
+            client_rb_id,
+            lifecycle_rb_id,
+            guid,
+            building_rb_id,
+            sync_time,
+            building_name
+            from client_building_visited
+            <!--增量同步条件-->
+<!--            where update_time >= '${start_time}' and '${end_time}' > update_time-->
+            ) spark_sql_client_building_visited
+        </select>
+        <rsa_columns>
+            my_mobile,
+            saler_name
+        </rsa_columns>
+<!--
+        <idld_sql>
+            insert overwrite table ${hivedatabase}.ods_hdb_mysql_client_building_visited partition(mysql_dbname)
+            select t1.r_build_id
+            ,t1.id
+            ,t1.client_id
+            ,t1.building_id
+            ,t1.status
+            ,t1.status_old
+            ,t1.signseehouse
+            ,t1.visited_time
+            ,t1.visited_time_old
+            ,t1.reception
+            ,t1.creater
+            ,t1.remark
+            ,t1.lifecycle_id
+            ,t1.recheck_user
+            ,t1.recheck_mark
+            ,t1.visit_review_status
+            ,t1.purpose
+            ,t1.purpose_old
+            ,t1.withseehouse
+            ,t1.my_visited_guid
+            ,t1.my_project_guid
+            ,t1.my_mobile_rsa
+            ,t1.my_mobile_md5
+            ,t1.is_exchange
+            ,t1.is_local_visit
+            ,t1.create_time
+            ,t1.create_time_old
+            ,t1.update_time
+            ,t1.is_lead
+            ,t1.saler_name_rsa
+            ,t1.saler_name_md5
+            ,t1.equipment_id
+            ,t1.broker_id
+            ,t1.client_rb_id
+            ,t1.lifecycle_rb_id
+            ,t1.guid
+            ,t1.building_rb_id
+            ,t1.sync_time
+            ,t1.building_name
+            ,t1.mysql_dbname
+            from (
+            select a.*, row_number() over(partition by a.id order by a.tag desc) rn
+            from(
+            select t.*,1 as tag from ${hivedatabase}.ods_hdb_mysql_client_building_visited t
+            union all
+            select t.*,2 as tag from ${hivedatabase}.idld_hdb_mysql_client_building_visited t) a
+            ) t1
+            where t1.rn = 1
+        </idld_sql>
+         -->
+    </table_name>
+</sparksqlshell>

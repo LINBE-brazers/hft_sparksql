@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+    <table_name table_id="broker_org_building">
+        <create>
+            id string,
+            org_id string,
+            building_id string,
+            create_time string,
+            is_check string,
+            is_signing string,
+            update_time string,
+            sync_time string
+        </create>
+        <select>
+            (select
+            id,org_id,building_id,create_time,
+            is_check,is_signing,update_time,
+            sync_time from broker_org_building) spark_sql_broker_org_building
+        </select>
+    </table_name>
+</sparksqlshell>

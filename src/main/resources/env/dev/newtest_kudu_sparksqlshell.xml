@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+    <table_name table_id="emp_number">
+        <create>
+            idNumber|bigint,
+            id_no|bigint,
+            empno|int,
+            ename|String,
+            job|String,
+            manager|int,
+            hiredate|String,
+            sal|double,
+            comm|double,
+            deptno|int
+        </create>
+        <keys>idNumber,id_no,empno,ename</keys>
+        <select>
+            (
+                select (id_no+1) as idNumber,
+                id_no,
+                empno,
+                ename,
+                job,
+                manager,
+                DATE_FORMAT(hiredate,'%Y-%m-%d %H:%i:%s') as hiredate_new,
+                sal,
+                comm,
+                deptno from emp_number
+            ) sparksql_emp_number
+        </select>
+    </table_name>
+
+</sparksqlshell>

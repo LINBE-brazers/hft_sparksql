@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+    <table_name table_id="broker_action_info">
+        <create>
+            id string comment "主键",
+            guid string comment "新表的brokerID",
+            action_time string comment "行为时间",
+            action_type int comment "行为类型 1：登录 2：登出 3：注销",
+            device_uuid string comment "设备id",
+            device_type string comment "设备类型 IOS, Android",
+            system_version string comment "设备版本号",
+            app_version string comment "应用版本号",
+            phone_model string comment "手机型号",
+            create_time string comment "创建时间",
+            create_by string comment "创建人",
+            update_time string comment "更新时间",
+            update_by string comment "更新人",
+            version_number int comment"版本号"
+        </create>
+        <select>
+            (
+            select id
+            ,guid
+            ,action_time
+            ,action_type
+            ,device_uuid
+            ,device_type
+            ,system_version
+            ,app_version
+            ,phone_model
+            ,create_time
+            ,create_by
+            ,update_time
+            ,update_by
+            ,version_number
+            from broker_action_info) spark_sql_broker_action_info
+        </select>
+    </table_name>
+
+</sparksqlshell>

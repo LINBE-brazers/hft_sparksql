@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+    <table_name table_id="prod_label_info">
+        <create>
+            id bigint comment "",
+            label_class string comment "标签类别",
+            label_type string comment "标签类型(1:搜索标签，2：展示标签，3：筛选标签)",
+            status int comment "标签状态（0：禁用，1：启用）",
+            label_name string comment "标签名",
+            label_sort int comment "标签名排序字段",
+            show_position string comment "标签展示位置(1:APP首页, 2:APP楼盘频道)",
+            is_deleted int comment "删除标记,1:删除，0：未删除",
+            sort int comment "排序",
+            quote_count int comment "引用次数",
+            create_date string comment "创建时间",
+            create_by bigint comment "创建人",
+            last_update_by string comment "更新人",
+            last_update_date string comment "更新时间",
+            version_number int comment "版本信息",
+            hft_label_id string comment "恒房通ID"
+        </create>
+        <select>
+            (
+            select id
+            ,label_class
+            ,label_type
+            ,status
+            ,label_name
+            ,label_sort
+            ,show_position
+            ,is_deleted
+            ,sort
+            ,quote_count
+            ,create_date
+            ,create_by
+            ,last_update_by
+            ,last_update_date
+            ,version_number
+            ,hft_label_id
+            from prod_label_info) spark_sql_prod_label_info
+        </select>
+    </table_name>
+</sparksqlshell>
+
+

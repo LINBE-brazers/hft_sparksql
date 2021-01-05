@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sparksqlshell>
+    <table_name table_id="prod_product">
+        <create>
+            idNumber  bigint,
+            id bigint,
+            column_id string,
+            title string,
+            html_title string,
+            source string,
+            pos int,
+            create_date string,
+            create_by string,
+            last_update_by string,
+            last_update_date string,
+            keyword string,
+            version_number int,
+            is_deleted int,
+            authority_tenant_id bigint,
+            authority_company_id bigint,
+            authority_corp_id bigint,
+            authority_project_id bigint,
+            company_id bigint,
+            city_id int
+
+        </create>
+        <select>
+            (
+            select id as idNumber,
+            id,
+            column_id,
+            title,
+            html_title,
+            source,
+            pos,
+            create_date,
+            create_by,
+            last_update_by,
+            last_update_date,
+            keyword,
+            version_number,
+            is_deleted,
+            authority_tenant_id,
+            authority_company_id,
+            authority_corp_id,
+            authority_project_id,
+            company_id,
+            city_id
+            from  prod_product) spark_sql_prod_product
+        </select>
+    </table_name>
+</sparksqlshell>
+
+
